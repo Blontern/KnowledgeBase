@@ -1,0 +1,12 @@
+# 模块
+node_modules
+
+# 缓存
+docs/.vitepress/dist
+docs/.vitepress/cache
+
+# 开发工具
+docs/.obsidian
+
+# 未完工项目暂不归档(archive)
+docs/设计模式

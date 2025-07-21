@@ -1,0 +1,101 @@
+:root{
+    --color-red-rgb: 233, 49, 71;
+    --color-red: #e93147;
+    --color-orange-rgb: 236, 117, 0;
+    --color-orange: #ec7500;
+    --color-yellow-rgb: 224, 172, 0;
+    --color-yellow: #e0ac00;
+    --color-green-rgb: 8, 185, 78;
+    --color-green: #08b94e;
+    --color-cyan-rgb: 0, 191, 188;
+    --color-cyan: #00bfbc;
+    --color-blue-rgb: 8, 109, 221;
+    --color-blue: #086ddd;
+    --color-purple-rgb: 120, 82, 238;
+    --color-purple: #7852ee;
+    --color-pink-rgb: 213, 57, 132;
+    --color-pink: #d53984;
+}
+.callout {
+    border-radius: 8px;
+    padding: 16px;
+    margin: 1em 0;
+    position: relative;
+    border-left: 4px solid;
+    overflow: hidden;
+}
+
+.callout-title {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
+.callout-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.callout-title-text {
+    flex-grow: 1;
+}
+
+.callout-content {
+    padding-left: 28px; /* 对齐标题文本 */
+}
+
+/* 各类型颜色配置 */
+.callout.note{
+    border-color: var(--color-blue);
+    background-color: rgba(var(--color-blue-rgb),0.1);
+}
+.callout.abstract{
+    border-color: var(--color-cyan);
+    background-color: rgba(var(--color-cyan-rgb),0.1);
+}
+.callout.info{
+    border-color: var(--color-blue);
+    background-color: rgba(var(--color-blue-rgb),0.1);
+}
+.callout.question{
+    border-color: var(--color-orange);
+    background-color: rgba(var(--color-orange-rgb),0.1);
+}
+.callout.tip{
+    border-color: var(--color-cyan);
+    background-color: rgba(var(--color-cyan-rgb),0.1);
+}
+.callout.danger{
+    border-color: var(--color-red);
+    background-color: rgba(var(--color-red-rgb),0.1);
+}
+.callout.bug{
+    border-color: var(--color-red);
+    background-color: rgba(var(--color-red-rgb),0.1);
+}
+.callout.example{
+    border-color: var(--color-purple);
+    background-color: rgba(var(--color-purple-rgb),0.1);
+}
+.callout.quote{
+    border-color: rgb(158, 158, 158);
+    background-color: rgba(158, 158, 158,0.1);
+}
+.callout.success{
+    border-color: var(--color-green);
+    background-color: rgba(var(--color-green-rgb),0.1);
+}
+.callout.failure{
+    border-color: var(--color-red);
+    background-color: rgba(var(--color-red-rgb),0.1);
+}
+.callout.warning{
+    border-color: var(--color-orange);
+    background-color: rgba(var(--color-orange-rgb),0.1);
+}
