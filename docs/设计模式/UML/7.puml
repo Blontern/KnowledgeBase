@@ -1,0 +1,38 @@
+@startuml
+
+abstract class "形状抽象类" as Shape <<Shape>>{
+  - drawingAPI: IDrawingAPI
+  + Shape(IDrawingAPI)
+  + Draw()
+}
+
+class "扩展抽象类" as Circle <<Circle>>{
+  - x: float
+  - y: float
+  - radius: float
+  + Circle(float, float, float, IDrawingAPI)
+  + Draw()
+}
+
+interface "绘图接口" as IDrawingAPI <<IDrawingAPI>>{
+  + DrawCircle(float, float, float)
+}
+
+class "Windows绘图" as WindowsAPI <<WindowsAPI>>#cccccc {
+  + DrawCircle(float, float, float)
+}
+
+class "Mac绘图" as MacAPI <<MacAPI>>#cccccc {
+  + DrawCircle(float, float, float)
+}
+
+Shape <|-- Circle
+IDrawingAPI <|.. WindowsAPI
+IDrawingAPI <|.. MacAPI
+Shape --> IDrawingAPI
+
+note right of Shape
+  抽象与实现分离
+  支持多平台扩展
+end note
+@enduml

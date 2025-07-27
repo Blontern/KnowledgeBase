@@ -1,0 +1,33 @@
+@startuml
+
+interface "表达式接口" as IExpression <<IExpression>> {
+  + Interpret(): bool
+}
+
+class "布尔字面量" as BooleanLiteral <<BooleanLiteral>> #cccccc {
+  - _value: bool
+  + Interpret(): bool
+}
+
+class "与表达式" as AndExpression <<AndExpression>> #cccccc {
+  - _left: IExpression
+  - _right: IExpression
+  + Interpret(): bool
+}
+
+class "或表达式" as OrExpression <<OrExpression>> #cccccc {
+  - _left: IExpression
+  - _right: IExpression
+  + Interpret(): bool
+}
+
+IExpression <|.. BooleanLiteral
+IExpression <|.. AndExpression
+IExpression <|.. OrExpression
+AndExpression --> "2" IExpression : 包含
+OrExpression --> "2" IExpression : 包含
+note top of IExpression
+  定义语法表示
+  解释特定语言
+end note
+@enduml

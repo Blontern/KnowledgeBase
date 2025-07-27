@@ -1,0 +1,46 @@
+@startuml
+
+interface "命令接口" as ICommand <<ICommand>> {
+  + Execute()
+  + Undo()
+}
+
+class "移动命令" as MoveCommand <<MoveCommand>> #cccccc {
+  - _unit: Unit
+  - _dx: int
+  - _dy: int
+  + Execute()
+  + Undo()
+}
+
+class "颜色命令" as ColorCommand <<ColorCommand>> #cccccc {
+  - _unit: Unit
+  - _color: string
+  - _previous: string
+  + Execute()
+  + Undo()
+}
+
+class "命令调用者" as CommandInvoker <<CommandInvoker>> {
+  - history: Stack<ICommand>
+  + Execute(ICommand)
+  + Undo()
+}
+
+class "单位类" as Unit <<Unit>> #cccccc {
+  + X: int
+  + Y: int
+  + Color: string
+  + Move(int, int)
+}
+
+ICommand <|.. MoveCommand
+ICommand <|.. ColorCommand
+MoveCommand --> Unit
+ColorCommand --> Unit
+CommandInvoker --> ICommand
+note right of CommandInvoker
+  支持撤销/重做
+  命令队列管理
+end note
+@enduml

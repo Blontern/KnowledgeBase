@@ -1,0 +1,30 @@
+@startuml
+
+interface "图片接口" as IImage <<IImage>>{
+  + Display()
+}
+
+class "真实图片" as RealImage <<RealImage>>#cccccc {
+  - fileName: string
+  + RealImage(string)
+  - LoadFromDisk()
+  + Display()
+}
+
+class "图片代理" as ProxyImage <<ProxyImage>>{
+  - realImage: RealImage
+  - fileName: string
+  + ProxyImage(string)
+  + Display()
+}
+
+IImage <|.. RealImage
+IImage <|.. ProxyImage
+ProxyImage -l-> RealImage
+
+note top of ProxyImage
+  延迟加载
+  缓存控制
+  访问控制
+end note
+@enduml

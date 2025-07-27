@@ -1,0 +1,21 @@
+@startuml
+
+interface "原型接口" as IPrototype<T> <<IPrototype<T>>{
+  + Clone(): T
+}
+
+class "具体原型类" as Character <<Character>>{
+  + Name: string
+  + Class: string
+  + Skills: List<string>
+  + Clone(): Character
+  + Show()
+}
+
+IPrototype <|.. Character
+
+note right of IPrototype
+  通过克隆创建对象
+  避免重复初始化
+end note
+@enduml

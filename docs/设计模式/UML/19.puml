@@ -1,0 +1,35 @@
+@startuml
+
+interface "主题接口" as ISubject <<ISubject>> {
+  + AddObserver(IObserver)
+  + RemoveObserver(IObserver)
+  + Notify()
+}
+
+interface "观察者接口" as IObserver <<IObserver>> {
+  + Update(int)
+}
+
+class "角色类" as Role <<Role>> {
+  - observers: List<IObserver>
+  - hp: int
+  + SetHP(int)
+}
+
+class "血条UI" as HPBar <<HPBar>> #cccccc {
+  + Update(int)
+}
+
+class "音效系统" as SoundEffect <<SoundEffect>> #cccccc {
+  + Update(int)
+}
+
+ISubject <|.. Role
+IObserver <|.. HPBar
+IObserver <|.. SoundEffect
+Role --> "1..*" IObserver : 包含
+note top of Role
+  发布-订阅机制
+  状态变更自动通知
+end note
+@enduml

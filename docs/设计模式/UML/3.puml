@@ -1,0 +1,17 @@
+@startuml
+
+class "单例类" as ResourceManager <<ResourceManager>>{
+  - instance: ResourceManager
+  - ResourceManager()
+  + Instance: ResourceManager
+  + LoadResource(string)
+}
+
+ResourceManager -right-> "instance" ResourceManager
+
+note left of ResourceManager
+  私有构造函数
+  静态实例访问点
+  线程安全控制
+end note
+@enduml

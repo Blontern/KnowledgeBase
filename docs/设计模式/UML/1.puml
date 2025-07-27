@@ -1,0 +1,43 @@
+@startuml
+interface "抽象工厂接口" as IDoorFactory <<IDoorFactory>> {
+  + CreateDoor(float, float): DoorBase
+}
+
+class "木门工厂" as WoodenDoorFactory <<WoodenDoorFactory>> {
+  + CreateDoor(float, float): DoorBase
+}
+
+class "铁门工厂" as IronDoorFactory <<IronDoorFactory>> {
+  + CreateDoor(float, float): DoorBase
+}
+
+abstract class "抽象产品类" as DoorBase <<DoorBase>> {
+  -width : float
+  -height : float
+  -isOpen : bool
+  {abstract} Open()
+  {abstract} Close()
+}
+
+class "木门" as WoodenDoor <<WoodenDoor>> #cccccc {
+  + Open()
+  + Close()
+}
+
+class "铁门" as IronDoor <<IronDoor>> #cccccc {
+  + Open()
+  + Close()
+}
+
+IDoorFactory <|-- WoodenDoorFactory
+IDoorFactory <|-- IronDoorFactory
+WoodenDoorFactory --> WoodenDoor : 创建
+IronDoorFactory --> IronDoor : 创建
+DoorBase <|-l- WoodenDoor
+DoorBase <|-r- IronDoor
+
+note right of IDoorFactory
+  将创建延迟到子类
+  符合开闭原则
+end note
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+
+class "建造者" as CharacterBuilder <<CharacterBuilder>>{
+  - _character: GameCharacter
+  + SetName(string): CharacterBuilder
+  + SetWeapon(string): CharacterBuilder
+  + SetArmor(string): CharacterBuilder
+  + SetSkill(string): CharacterBuilder
+  + SetAppearance(string): CharacterBuilder
+  + Build(): GameCharacter
+}
+
+class "产品类" as GameCharacter <<GameCharacter>>{
+  + Name: string
+  + Weapon: string
+  + Armor: string
+  + Skill: string
+  + Appearance: string
+  + Display()
+}
+
+CharacterBuilder --> GameCharacter : 构建
+
+note right of CharacterBuilder
+  链式调用设置属性
+  构建：分离构建与表示
+end note
+
+note right of GameCharacter
+  通过建造者构造出来的产品类实例
+end note
+@enduml

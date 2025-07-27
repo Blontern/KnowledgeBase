@@ -1,0 +1,26 @@
+@startuml
+
+abstract class "文件系统项" as FileSystemItem <<FileSystemItem>>{
+  - name: string
+  + Display(int)
+}
+
+class "文件（叶子）" as File <<File>> #cccccc {
+  + Display(int)
+}
+
+class "文件夹（组合）" as Folder <<Folder>>{
+  - children: List<FileSystemItem>
+  + Add(FileSystemItem)
+  + Display(int)
+}
+
+FileSystemItem <|-d- File
+FileSystemItem <|-d- Folder
+Folder -u-> "*" FileSystemItem : 包含
+
+note top of Folder
+  递归结构
+  统一处理
+end note
+@enduml

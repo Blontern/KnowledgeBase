@@ -1,0 +1,37 @@
+@startuml
+
+interface "节点接口" as INode <<INode>> {
+  + Accept(INodeVisitor)
+}
+
+interface "访问者接口" as INodeVisitor <<INodeVisitor>> {
+  + Visit(VariableNode)
+  + Visit(FunctionNode)
+}
+
+class "变量节点" as VariableNode <<VariableNode>> #cccccc {
+  + Name: string
+  + Accept(INodeVisitor)
+}
+
+class "函数节点" as FunctionNode <<FunctionNode>> #cccccc {
+  + FunctionName: string
+  + Accept(INodeVisitor)
+}
+
+class "语法检查器（访问者）" as SyntaxChecker <<SyntaxChecker>> #cccccc {
+  + Visit(VariableNode)
+  + Visit(FunctionNode)
+}
+
+INode <|.. VariableNode
+INode <|.. FunctionNode
+INodeVisitor <|.. SyntaxChecker
+VariableNode ..> INodeVisitor
+FunctionNode ..> INodeVisitor
+
+note left of INodeVisitor
+  分离数据结构与操作
+  双重分发机制
+end note
+@enduml

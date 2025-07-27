@@ -1,0 +1,26 @@
+@startuml
+
+interface "树接口" as ITree <<ITree>>{
+  + Display(int, int)
+}
+
+class "树类型" as TreeType <<TreeType>>#cccccc {
+  - type: string
+  - texture: string
+  - color: string
+  + Display(int, int)
+}
+
+class "树工厂" as TreeFactory <<TreeFactory>>{
+  - _treePool: Dictionary<string, TreeType>
+  + GetTreeType(string, string, string): TreeType
+}
+
+ITree <|.. TreeType
+TreeFactory --> TreeType
+
+note bottom of TreeFactory
+  共享池管理
+  减少内存占用
+end note
+@enduml

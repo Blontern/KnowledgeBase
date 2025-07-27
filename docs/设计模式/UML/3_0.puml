@@ -1,0 +1,27 @@
+@startuml 单例模式实现变体
+
+' 饿汉式单例 (Eager)
+class EagerSingleton {
+    - static instance: EagerSingleton = new EagerSingleton()
+    - EagerSingleton() {hidden}
+    + static GetInstance(): EagerSingleton
+    + DoWork(): void
+}
+
+' 懒汉式单例 (Lazy)
+class LazySingleton {
+    - static instance: LazySingleton
+    - LazySingleton() {hidden}
+    + static GetInstance(): LazySingleton
+    + DoWork(): void
+}
+
+' 双重检查锁单例 (DCL)
+class DoubleCheckedSingleton {
+    - static volatile instance: DoubleCheckedSingleton
+    - static lockObj: Object = new Object()
+    - DoubleCheckedSingleton() {hidden}
+    + static GetInstance(): DoubleCheckedSingleton
+    + DoWork(): void
+}
+@enduml

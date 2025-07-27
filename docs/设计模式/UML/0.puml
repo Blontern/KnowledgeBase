@@ -1,0 +1,32 @@
+@startuml
+class "工厂类" as DoorFactory <<DoorFactory>> {
+  + CreateDoor(type: string, width: float, height: float): DoorBase
+}
+
+abstract class "抽象产品类" as DoorBase <<DoorBase>> {
+  -width : float
+  -height : float
+  -isOpen : bool
+  {abstract} Open()
+  {abstract} Close()
+}
+
+class "木门" as WoodenDoor <<WoodenDoor>> #cccccc {
+  + Open()
+  + Close()
+}
+
+class "铁门" as IronDoor <<IronDoor>> #cccccc {
+  + Open()
+  + Close()
+}
+
+DoorFactory --> DoorBase : 创建
+DoorBase <|-l- WoodenDoor
+DoorBase <|-r- IronDoor
+
+note right of DoorFactory
+  根据参数创建具体产品
+  屏蔽创建细节
+end note
+@enduml

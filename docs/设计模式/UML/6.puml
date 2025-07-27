@@ -1,0 +1,23 @@
+@startuml
+
+interface "目标接口" as IPaymentGateway <<IPaymentGateway>>{
+  + Pay(string)
+}
+
+class "适配器" as ImageAdapter <<ImageAdapter>>{
+  - _legacyProcessor: LegacyPaymentProcessor
+  + ImageAdapter(LegacyPaymentProcessor)
+  + Pay(string)
+}
+
+class "适配者" as LegacyPaymentProcessor <<LegacyPaymentProcessor>> #cccccc {
+  + ProcessPayment(string): string
+}
+
+IPaymentGateway <|.. ImageAdapter
+ImageAdapter --> LegacyPaymentProcessor
+note right of ImageAdapter
+  接口转换
+  JSON ↔ XML
+end note
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+
+class "备忘录" as EditorMemento <<EditorMemento>> {
+  - Content: string
+}
+
+class "编辑器" as Editor <<Editor>> {
+  - _content: string
+  + Write(string)
+  + Show(): string
+  + Save(): EditorMemento
+  + Restore(EditorMemento)
+}
+
+class "历史记录" as History <<History>> {
+  - _stack: Stack<EditorMemento>
+  + Push(EditorMemento)
+  + Pop(): EditorMemento
+}
+
+Editor --> EditorMemento : 创建
+History --> EditorMemento
+Editor .r.> History : 恢复
+
+note left of EditorMemento
+  保存对象状态
+  不暴露内部细节
+end note
+@enduml

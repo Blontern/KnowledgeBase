@@ -1,0 +1,33 @@
+@startuml
+
+interface "文本渲染器" as ITextRenderer <<ITextRenderer>>{
+  + Render(string)
+}
+
+class "纯文本渲染" as PlainTextRenderer <<PlainTextRenderer>>#cccccc {
+  + Render(string)
+}
+
+abstract class "装饰器基类" as TextRendererDecorator <<TextRendererDecorator>>{
+  - _inner: ITextRenderer
+  + TextRendererDecorator(ITextRenderer)
+}
+
+class "加粗装饰器" as BoldDecorator <<BoldDecorator>>{
+  + Render(string)
+}
+
+class "边框装饰器" as BorderDecorator <<BorderDecorator>>{
+  + Render(string)
+}
+
+ITextRenderer <|.. PlainTextRenderer
+ITextRenderer <|.. TextRendererDecorator
+TextRendererDecorator <|-- BoldDecorator
+TextRendererDecorator <|-- BorderDecorator
+TextRendererDecorator --> ITextRenderer
+note top of TextRendererDecorator
+  动态添加功能
+  嵌套包装
+end note
+@enduml

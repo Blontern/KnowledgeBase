@@ -1,0 +1,28 @@
+@startuml
+
+interface "聊天室接口" as IChatRoom <<IChatRoom>> {
+  + SendMessage(from: string, to: string, message: string)
+}
+
+class "聊天室" as ChatRoom <<ChatRoom>> {
+  - _users: Dictionary<string, User>
+  + Register(User)
+  + SendMessage(from: string, to: string, message: string)
+}
+
+class "用户类" as User <<User>> {
+  - _chatRoom: IChatRoom
+  + Name: string
+  + SetChatRoom(IChatRoom)
+  + Send(to: string, message: string)
+  + Receive(from: string, message: string)
+}
+
+IChatRoom <|.. ChatRoom
+ChatRoom --> "*" User
+User --> IChatRoom
+note top of ChatRoom
+  集中管理交互
+  解耦对象间通信
+end note
+@enduml

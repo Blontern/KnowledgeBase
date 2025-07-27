@@ -1,0 +1,28 @@
+@startuml
+
+abstract class "文件导入器" as FileImporter <<FileImporter>> {
+  + Import()
+  # OpenFile()
+  # {abstract} ReadData()
+  # {abstract} ValidateFormat()
+  # SaveToDatabase()
+  # CloseFile()
+}
+
+class "CSV导入器" as CsvImporter <<CsvImporter>> #cccccc {
+  # ReadData()
+  # ValidateFormat()
+}
+
+class "JSON导入器" as JsonImporter <<JsonImporter>> #cccccc {
+  # ReadData()
+  # ValidateFormat()
+}
+
+FileImporter <|-- CsvImporter
+FileImporter <|-- JsonImporter
+note right of FileImporter
+  定义算法骨架
+  子类实现可变步骤
+end note
+@enduml

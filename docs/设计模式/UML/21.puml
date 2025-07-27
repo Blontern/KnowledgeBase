@@ -1,0 +1,34 @@
+@startuml
+
+interface "移动策略接口" as IMoveStrategy <<IMoveStrategy>> {
+  + Move()
+}
+
+class "最短路径策略" as ShortestPathStrategy <<ShortestPathStrategy>> #cccccc {
+  + Move()
+}
+
+class "安全路径策略" as SafePathStrategy <<SafePathStrategy>> #cccccc {
+  + Move()
+}
+
+class "随机走动策略" as RandomPathStrategy <<RandomPathStrategy>> #cccccc {
+  + Move()
+}
+
+
+class "敌人" as Enemy <<Enemy>> {
+  - strategy: IMoveStrategy
+  + SetStrategy(IMoveStrategy)
+  + Move()
+}
+
+IMoveStrategy <|.. ShortestPathStrategy
+IMoveStrategy <|.. SafePathStrategy
+IMoveStrategy <|.. RandomPathStrategy
+Enemy --> IMoveStrategy
+note right of Enemy
+  运行时切换算法
+  策略可互换
+end note
+@enduml

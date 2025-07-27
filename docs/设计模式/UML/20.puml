@@ -1,0 +1,32 @@
+@startuml
+interface "状态接口" as ICharacterState <<ICharacterState>> {
+  + Handle()
+}
+
+class "待命状态" as IdleState <<IdleState>> #cccccc {
+  + Handle()
+}
+
+class "攻击状态" as AttackState <<AttackState>> #cccccc {
+  + Handle()
+}
+
+class "防御状态" as DefendState <<DefendState>> #cccccc {
+  + Handle()
+}
+
+class "角色类" as Character <<Character>> {
+  - currentState: ICharacterState
+  + SetState(ICharacterState)
+  + Act()
+}
+
+ICharacterState <|.. IdleState
+ICharacterState <|.. AttackState
+ICharacterState <|.. DefendState
+Character --> ICharacterState
+note right of Character
+  状态决定行为
+  运行时切换状态
+end note
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+
+abstract class "处理器抽象类" as Handler <<Handler>> {
+  - next: Handler
+  + SetNext(Handler)
+  + Handle(AttackContext)
+}
+
+class "护甲处理器" as ArmorHandler <<ArmorHandler>> #cccccc {
+  + Handle(AttackContext)
+}
+
+class "护盾处理器" as ShieldHandler <<ShieldHandler>> #cccccc {
+  + Handle(AttackContext)
+}
+
+class "血量处理器" as HealthHandler <<HealthHandler>> #cccccc {
+  + Handle(AttackContext)
+}
+
+class "攻击上下文" as AttackContext <<AttackContext>> {
+  + Damage: int
+  + Armor: int
+  + Shield: int
+  + Health: int
+}
+
+Handler <|-- ArmorHandler
+Handler <|-- ShieldHandler
+Handler <|-- HealthHandler
+Handler --> Handler : 下一处理器
+ArmorHandler --> AttackContext
+ShieldHandler --> AttackContext
+HealthHandler --> AttackContext
+note left of Handler
+  解耦请求发送者与接收者
+  链式传递处理请求
+end note
+@enduml

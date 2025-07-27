@@ -1,0 +1,59 @@
+@startuml
+interface "抽象工厂接口" as IGUIFactory <<IGUIFactory>>{
+  + CreateButton(): IButton
+  + CreateTextBox(): ITextBox
+}
+
+class "Windows工厂" as WindowsFactory <<WindowsFactory>>{
+  + CreateButton(): IButton
+  + CreateTextBox(): ITextBox
+}
+
+class "Mac工厂" as MacFactory <<MacFactory>>{
+  + CreateButton(): IButton
+  + CreateTextBox(): ITextBox
+}
+
+interface "按钮接口" as IButton <<IButton>>{
+  + Render()
+}
+
+interface "文本框接口" as ITextBox <<ITextBox>>{
+  + Input(string)
+}
+
+class "Windows按钮" as WindowsButton <<WindowsButton>>#cccccc {
+  + Render()
+}
+
+class "Windows文本框" as WindowsTextBox <<WindowsTextBox>>#cccccc {
+  + Input(string)
+}
+
+class "Mac按钮" as MacButton <<MacButton>>#cccccc {
+  + Render()
+}
+
+class "Mac文本框" as MacTextBox <<MacTextBox>>#cccccc {
+  + Input(string)
+}
+
+IGUIFactory <|-- WindowsFactory
+IGUIFactory <|-- MacFactory
+WindowsFactory --> WindowsButton
+WindowsFactory --> WindowsTextBox
+MacFactory --> MacButton
+MacFactory --> MacTextBox
+IButton <|-- WindowsButton
+IButton <|-- MacButton
+ITextBox <|-- WindowsTextBox
+ITextBox <|-- MacTextBox
+
+note left of IGUIFactory
+  工厂方法的底子不变
+end note
+
+note top of ITextBox
+  抽象了产品类
+end note
+@enduml

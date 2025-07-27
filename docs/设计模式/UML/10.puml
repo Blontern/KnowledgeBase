@@ -1,0 +1,35 @@
+@startuml
+
+class "媒体外观" as MediaFacade <<MediaFacade>>{
+  - _video: VideoDecoder
+  - _audio: AudioDecoder
+  - _subtitle: SubtitleRenderer
+  - _screen: ScreenManager
+  + PlayMedia()
+}
+
+class "视频解码" as VideoDecoder <<VideoDecoder>> #cccccc {
+  + Decode()
+}
+
+class "音频解码" as AudioDecoder <<AudioDecoder>>#cccccc {
+  + Decode()
+}
+
+class "字幕渲染" as SubtitleRenderer <<SubtitleRenderer>>#cccccc {
+  + Render()
+}
+
+class "屏幕管理" as ScreenManager <<ScreenManager>>#cccccc {
+  + Refresh()
+}
+
+MediaFacade --> VideoDecoder
+MediaFacade --> AudioDecoder
+MediaFacade --> SubtitleRenderer
+MediaFacade --> ScreenManager
+note top of MediaFacade
+  统一入口
+  简化调用
+end note
+@enduml

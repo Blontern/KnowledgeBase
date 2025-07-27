@@ -7,6 +7,7 @@ docs/.vitepress/cache
 
 # 开发工具
 docs/.obsidian
+/run.ps1
 
 # 未完工项目暂不归档(archive)
-docs/设计模式
+docs/test
