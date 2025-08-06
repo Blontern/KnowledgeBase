@@ -18,24 +18,30 @@ export default defineConfig({
       md.use(obsidianCallout);
     },
   },
-  // vite: {
-  //   server: {
-  //     allowedHosts: true,
-  //   },
-  // },
+  vite: {
+    server: {
+      // allowedHosts: true,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3000',
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/api/, '')
+        }
+      }
+    },
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: '/logo.svg',
-    outline: [1,5],
+    logo: "/logo.svg",
+    outline: [1, 5],
     nav: [
       { text: "Home", link: "/" },
-      { text: "Examples", link: "/markdown-examples" },
+      { text: "Examples", link: "/test/test" },
+      { text: "登录认证", link: "/Auth" },
     ],
 
-    sidebar: loadSidebarFolders('docs'),
+    sidebar: loadSidebarFolders("docs"),
 
-    socialLinks: [
-      { icon: "github", link: "https://github.com/Blontern" },
-    ],
+    socialLinks: [{ icon: "github", link: "https://github.com/Blontern" }],
   },
 });

@@ -5,7 +5,6 @@ import yaml from "js-yaml";
 
 export function loadSidebarFolders(dirpath) {
   const sidebarConfig = {};
-
   try {
     // 读取目录下的所有文件和文件夹
     const items = fs.readdirSync(dirpath, { withFileTypes: true });
@@ -24,7 +23,7 @@ export function loadSidebarFolders(dirpath) {
             const tocData = yaml.load(fileContent);
 
             // 将解析后的数据添加到配置对象
-            sidebarConfig[`/${folderName}`] = tocData;
+            sidebarConfig[`/${dirpath}/${folderName}`] = tocData;
           } catch (e) {
             console.error(
               `Error parsing _toc_.yaml in ${folderName}:`,
