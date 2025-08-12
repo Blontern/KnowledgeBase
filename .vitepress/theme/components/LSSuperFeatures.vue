@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DefaultTheme } from 'vitepress/theme'
-import LSFeatures from './LSFeatures.vue'
+import VPFeatures from 'vitepress/dist/client/theme-default/components/VPFeatures.vue'
 
 export interface SuperFeature {
   title: string
@@ -31,7 +31,7 @@ defineProps<{
         class="group"
       >
         <h2 class="title">{{ group.title }}</h2>
-        <LSFeatures :features="group.items" />
+        <VPFeatures :features="group.items" />
       </div>
     </div>
   </div>
@@ -46,10 +46,6 @@ defineProps<{
 .container {
   margin: 0 auto;
   max-width: 1152px;
-}
-
-.group {
-  margin-bottom: 64px;
 }
 
 .title {

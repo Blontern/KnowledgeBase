@@ -20,14 +20,7 @@ export default defineConfig({
   },
   vite: {
     server: {
-      // allowedHosts: true,
-      proxy: {
-        '/api': {
-          target: 'http://localhost:3000',
-          changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, '')
-        }
-      }
+      allowedHosts: true
     },
   },
   themeConfig: {
@@ -36,12 +29,11 @@ export default defineConfig({
     outline: [1, 5],
     nav: [
       { text: "Home", link: "/" },
-      { text: "Examples", link: "/test/test" },
-      { text: "登录认证", link: "/Auth" },
+      { text: "全局变量", link: "/test/test" },
     ],
 
-    sidebar: loadSidebarFolders("docs"),
+    sidebar: loadSidebarFolders(),
 
-    socialLinks: [{ icon: "github", link: "https://github.com/Blontern" }],
+    socialLinks: [{ icon: "github", link: "https://github.com/Blontern/KnowledgeBase" }],
   },
 });

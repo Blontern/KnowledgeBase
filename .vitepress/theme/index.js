@@ -6,6 +6,9 @@ import "../utils/obsidianCallout.css"
 
 import LSHomeFeatures from './components/LSHomeFeatures.vue'
 import CodeSteps from './components/CodeSteps.vue'
+import Table from './components/Table.vue'
+import Strokes from './components/Strokes.vue'
+import Card from './components/Card.vue'
 
 /** @type {import('vitepress').Theme} */
 export default {
@@ -17,7 +20,9 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
-    app.component('LSHomeFeatures', LSHomeFeatures)
     app.component('CodeSteps', CodeSteps)
+    app.component('Table', Table)
+    app.component('Strokes', Strokes)
+    app.component('Card', Card)
   }
 }
